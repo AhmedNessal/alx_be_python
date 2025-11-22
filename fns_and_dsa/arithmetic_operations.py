@@ -1,23 +1,48 @@
-from arithmetic_operations import perform_operation
-def perform_operation(num1, num2, operation):
-    if operation == 'add':
-        return num1 + num2 
-    elif operation == 'subtract':
-        return num1 - num2
-    elif operation == 'multiply':
-        return num1 * num2
-    elif operation == 'divide':
-        return num1 / num2 
-    else:
-        raise ValueError("Invalid operation. Please choose from add, subtract, multiply, divide.")
-def main():
-    print("Arithmetic Operations")
+def add(num1, num2):
+    return num1 + num2
+
+
+def subtract(num1, num2):
+    return num1 - num2
+
+
+def multiply(num1, num2):
+    return num1 * num2
+
+
+def divide(num1, num2):
+    if num2 == 0:
+        raise ZeroDivisionError("Cannot divide by zero.")
+    return num1 / num2
+
+
+def modulus(num1, num2):
+    if num2 == 0:
+        raise ZeroDivisionError("Cannot divide by zero.")
+    return num1 % num2
+
+
+# ----- User Interaction -----
+
+try:
     num1 = float(input("Enter the first number: "))
     num2 = float(input("Enter the second number: "))
-    operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
+    operation = input("Choose operation (+, -, *, /, %): ")
 
-    result = perform_operation(num1, num2, operation)
-    print(f"Result: {result}")
+    if operation == "+":
+        print("Result:", add(num1, num2))
+    elif operation == "-":
+        print("Result:", subtract(num1, num2))
+    elif operation == "*":
+        print("Result:", multiply(num1, num2))
+    elif operation == "/":
+        print("Result:", divide(num1, num2))
+    elif operation == "%":
+        print("Result:", modulus(num1, num2))
+    else:
+        print("Invalid operation selected.")
 
-if __name__ == "__main__":
-    main()
+except ValueError:
+    print("Invalid input. Please enter numeric values.")
+except ZeroDivisionError as e:
+    print(e)
