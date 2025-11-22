@@ -22,6 +22,25 @@ def modulus(num1, num2):
     return num1 % num2
 
 
+def perform_operation(num1, num2, operation):
+    if operation == "+":
+        return add(num1, num2)
+    elif operation == "-":
+        return subtract(num1, num2)
+    elif operation == "*":
+        return multiply(num1, num2)
+    elif operation == "/":
+        if num2 == 0:
+            raise ZeroDivisionError("Cannot divide by zero.")
+        return divide(num1, num2)
+    elif operation == "%":
+        if num2 == 0:
+            raise ZeroDivisionError("Cannot divide by zero.")
+        return modulus(num1, num2)
+    else:
+        raise ValueError("Invalid operation.")
+
+
 # ----- User Interaction -----
 
 try:
@@ -29,18 +48,8 @@ try:
     num2 = float(input("Enter the second number: "))
     operation = input("Choose operation (+, -, *, /, %): ")
 
-    if operation == "+":
-        print("Result:", add(num1, num2))
-    elif operation == "-":
-        print("Result:", subtract(num1, num2))
-    elif operation == "*":
-        print("Result:", multiply(num1, num2))
-    elif operation == "/":
-        print("Result:", divide(num1, num2))
-    elif operation == "%":
-        print("Result:", modulus(num1, num2))
-    else:
-        print("Invalid operation selected.")
+    result = perform_operation(num1, num2, operation)
+    print("Result:", result)
 
 except ValueError:
     print("Invalid input. Please enter numeric values.")
